@@ -5,3 +5,25 @@ __pycache__/
 *.png
 *.jpg
 *.jpeg
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+images/
+*.log
+.DS_Store

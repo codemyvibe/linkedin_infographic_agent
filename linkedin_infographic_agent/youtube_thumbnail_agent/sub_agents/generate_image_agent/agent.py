@@ -4,17 +4,17 @@ Agent for generating YouTube thumbnail images from prompts and reference assets.
 
 from google.adk.agents import Agent
 
-from ...constants import GEMINI_MODEL
-from .tools.create_image import create_image
+from linkedin_infographic_agent.constants import GEMINI_MODEL
+from .tools.create_slide import create_slide
 
-# Remove the edit_image import as we'll use create_image for everything
+# Remove the edit_image import as we'll use create_slide for everything
 # from .tools.edit_image import edit_image
 
 generate_image_agent = Agent(
     name="generate_image_agent",
     description="An agent that generates YouTube thumbnail images from prompts and automatically incorporates assets.",
     model=GEMINI_MODEL,
-    tools=[create_image],
+    tools=[create_slide],
     instruction="""
     You are the YouTube Thumbnail Image Generator, responsible for taking refined prompts
     and generating actual thumbnail images using OpenAI's image generation API.
@@ -39,7 +39,7 @@ generate_image_agent = Agent(
     The system automatically handles asset incorporation:
     
     1. Any images in the assets directory will be used as references
-    2. The create_image tool will automatically use all available assets
+    2. The create_slide tool will automatically use all available assets
     3. You don't need to specify which assets to use - this happens automatically
     4. If a thumbnail was already generated, it will be used as a reference
     
@@ -47,7 +47,7 @@ generate_image_agent = Agent(
     
     You have one tool at your disposal:
     
-    create_image - Generates a new image from a text prompt
+    create_slide - Generates a new image from a text prompt
     - Parameters:
       - prompt (string): Detailed description of the image to create
     
@@ -55,7 +55,7 @@ generate_image_agent = Agent(
     
     When asked to create a thumbnail:
     
-    1. Call the create_image tool with the complete prompt exactly as provided
+    1. Call the create_slide tool with the complete prompt exactly as provided
     2. Report the result to the user, including the filename and location
     3. If assets were used, mention which ones were incorporated
     
@@ -63,7 +63,7 @@ generate_image_agent = Agent(
     
     1. Review their feedback carefully
     2. Incorporate their feedback into a new, comprehensive prompt
-    3. Call the create_image tool with this new prompt
+    3. Call the create_slide tool with this new prompt
     4. The system will automatically use the previous thumbnail as reference
     5. Report the results, highlighting how their feedback was incorporated
     
